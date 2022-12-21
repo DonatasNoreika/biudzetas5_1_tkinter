@@ -14,6 +14,9 @@ def ui_ivesti_pajamas():
     siuntejas1.delete(0, END)
     info1.delete(0, END)
     suma1.focus()
+    blokas.delete(0, END)
+    blokas.insert(END, *biudzetas.zurnalas)
+    balansas['text'] = f"Balansas: {biudzetas.gauti_balansa()}"
 
 def ui_ivesti_islaidas():
     biudzetas.prideti_islaidu_irasa(float(suma2.get()), atsiskaitymo_budas2.get(), isigyta_preke_paslauga2.get(), info2.get())
@@ -22,11 +25,15 @@ def ui_ivesti_islaidas():
     isigyta_preke_paslauga2.delete(0, END)
     info2.delete(0, END)
     suma2.focus()
+    blokas.delete(0, END)
+    blokas.insert(END, *biudzetas.zurnalas)
+    balansas['text'] = f"Balansas: {biudzetas.gauti_balansa()}"
 
 def ui_istrinti():
     biudzetas.istrint_irasa(blokas.curselection()[0])
     blokas.delete(0, END)
     blokas.insert(END, *biudzetas.zurnalas)
+    balansas['text'] = f"Balansas: {biudzetas.gauti_balansa()}"
 
 
 # Pajamų formos grafiniai objektai:
@@ -55,7 +62,7 @@ islaidos_button2 = Button(pajamos1, text="Įvesti", command=ui_ivesti_islaidas)
 blokas = Listbox(viskas3)
 blokas.insert(END, *biudzetas.zurnalas)
 istrinti_button = Button(viskas3, text="Ištrinti įrašą", command=ui_istrinti)
-# balansas = Label(viskas3, text=str(biudzetas.gauti_balansa()))
+balansas = Label(viskas3, text=f"Balansas: {biudzetas.gauti_balansa()}")
 
 pajamos1.pack()
 islaidos2.pack()
@@ -85,8 +92,8 @@ islaidos_button2.pack()
 
 # Visų kitų objektų pakavimas:
 blokas.pack()
-# balansas.pack()
 istrinti_button.pack()
+balansas.pack()
 
 langas.mainloop()
 
