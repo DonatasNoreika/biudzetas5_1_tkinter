@@ -10,12 +10,12 @@ class Biudzetas:
     def prideti_pajamu_irasa(self, suma, siuntejas, info):
         irasas = PajamuIrasas(suma, siuntejas, info)
         self.zurnalas.append(irasas)
-        self.irasyti_i_failas()
+        self.irasyti_i_faila()
 
     def prideti_islaidu_irasa(self, suma, atsiskaitymo_budas, isigyta_preke_paslauga, info):
         irasas = IslaiduIrasas(suma, atsiskaitymo_budas, isigyta_preke_paslauga, info)
         self.zurnalas.append(irasas)
-        self.irasyti_i_failas()
+        self.irasyti_i_faila()
 
     def gauti_balansa(self):
         bendrasuma = 0
@@ -25,6 +25,10 @@ class Biudzetas:
             if type(irasas) is IslaiduIrasas:
                 bendrasuma -= irasas.suma
         return bendrasuma
+
+    def istrint_irasa(self, indeksas):
+        self.zurnalas.pop(indeksas)
+        self.irasyti_i_faila()
 
     def gauti_ataskaita(self):
         for irasas in self.zurnalas:
@@ -38,6 +42,6 @@ class Biudzetas:
             zurnalas = []
         return zurnalas
 
-    def irasyti_i_failas(self):
+    def irasyti_i_faila(self):
         with open("biudzetas.pkl", 'wb') as file:
             pickle.dump(self.zurnalas, file)

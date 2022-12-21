@@ -1,5 +1,5 @@
 from biudzetas import Biudzetas
-from tkinter import Tk, Label, Entry, Button, Listbox, Frame
+from tkinter import Tk, Label, Entry, Button, Listbox, Frame, END
 
 biudzetas = Biudzetas()
 
@@ -9,19 +9,25 @@ islaidos2 = Frame(langas)
 viskas3 = Frame(langas)
 
 def ui_ivesti_pajamas():
-    biudzetas.prideti_pajamu_irasa(suma1.get(), siuntejas1.get(), info1.get())
-    suma1.delete(0, 'end')
-    siuntejas1.delete(0, 'end')
-    info1.delete(0, 'end')
+    biudzetas.prideti_pajamu_irasa(float(suma1.get()), siuntejas1.get(), info1.get())
+    suma1.delete(0, END)
+    siuntejas1.delete(0, END)
+    info1.delete(0, END)
     suma1.focus()
 
 def ui_ivesti_islaidas():
-    biudzetas.prideti_islaidu_irasa(suma2.get(), atsiskaitymo_budas2.get(), isigyta_preke_paslauga2.get(), info2.get())
-    suma2.delete(0, 'end')
-    atsiskaitymo_budas2.delete(0, 'end')
-    isigyta_preke_paslauga2.delete(0, 'end')
-    info2.delete(0, 'end')
+    biudzetas.prideti_islaidu_irasa(float(suma2.get()), atsiskaitymo_budas2.get(), isigyta_preke_paslauga2.get(), info2.get())
+    suma2.delete(0, END)
+    atsiskaitymo_budas2.delete(0, END)
+    isigyta_preke_paslauga2.delete(0, END)
+    info2.delete(0, END)
     suma2.focus()
+
+def ui_istrinti():
+    biudzetas.istrint_irasa(blokas.curselection()[0])
+    blokas.delete(0, END)
+    blokas.insert(END, *biudzetas.zurnalas)
+
 
 # Pajamų formos grafiniai objektai:
 uzrasas1 = Label(pajamos1, text="Įveskite pajamas:")
@@ -44,6 +50,12 @@ isigyta_preke_paslauga2 = Entry(pajamos1)
 info_uzrasas2 = Label(pajamos1, text="Informacija")
 info2 = Entry(pajamos1)
 islaidos_button2 = Button(pajamos1, text="Įvesti", command=ui_ivesti_islaidas)
+
+# Pajamų ir įrašų atvaizdavimas
+blokas = Listbox(viskas3)
+blokas.insert(END, *biudzetas.zurnalas)
+istrinti_button = Button(viskas3, text="Ištrinti įrašą", command=ui_istrinti)
+# balansas = Label(viskas3, text=str(biudzetas.gauti_balansa()))
 
 pajamos1.pack()
 islaidos2.pack()
@@ -70,6 +82,11 @@ isigyta_preke_paslauga2.pack()
 info_uzrasas2.pack()
 info2.pack()
 islaidos_button2.pack()
+
+# Visų kitų objektų pakavimas:
+blokas.pack()
+# balansas.pack()
+istrinti_button.pack()
 
 langas.mainloop()
 
