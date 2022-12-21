@@ -1,5 +1,5 @@
 from biudzetas import Biudzetas
-from tkinter import Tk, Label, Entry, Button, Listbox, Frame, END
+from tkinter import Tk, Label, Entry, Button, Listbox, Frame, END, LEFT
 
 biudzetas = Biudzetas()
 
@@ -68,9 +68,9 @@ blokas.insert(END, *biudzetas.zurnalas)
 istrinti_button = Button(viskas3, text="Ištrinti įrašą", command=ui_istrinti)
 balansas = Label(viskas3, text=f"Balansas: {biudzetas.gauti_balansa()}")
 
-pajamos1.pack()
-islaidos2.pack()
-viskas3.pack()
+pajamos1.pack(side=LEFT)
+islaidos2.pack(side=LEFT)
+viskas3.pack(side=LEFT)
 
 # Pajamų objektų pakavimas:
 uzrasas1.pack()
