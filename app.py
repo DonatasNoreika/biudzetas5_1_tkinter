@@ -15,6 +15,15 @@ def ui_ivesti_pajamas():
     info1.delete(0, 'end')
     suma1.focus()
 
+def ui_ivesti_islaidas():
+    biudzetas.prideti_islaidu_irasa(suma2.get(), atsiskaitymo_budas2.get(), isigyta_preke_paslauga2.get(), info2.get())
+    suma2.delete(0, 'end')
+    atsiskaitymo_budas2.delete(0, 'end')
+    isigyta_preke_paslauga2.delete(0, 'end')
+    info2.delete(0, 'end')
+    suma2.focus()
+
+# Pajamų formos grafiniai objektai:
 uzrasas1 = Label(pajamos1, text="Įveskite pajamas:")
 suma_uzrasas1 = Label(pajamos1, text="Suma")
 suma1 = Entry(pajamos1)
@@ -24,10 +33,23 @@ info_uzrasas1 = Label(pajamos1, text="Informacija")
 info1 = Entry(pajamos1)
 pajamos_button1 = Button(pajamos1, text="Įvesti", command=ui_ivesti_pajamas)
 
+# Išlaidų formos grafiniai objektai:
+uzrasas2 = Label(pajamos1, text="Įveskite išlaidas:")
+suma_uzrasas2 = Label(pajamos1, text="Suma")
+suma2 = Entry(pajamos1)
+atsiskaitymo_budas_uzrasas2 = Label(pajamos1, text="Atsiskaitymo budas")
+atsiskaitymo_budas2 = Entry(pajamos1)
+isigyta_preke_paslauga_uzrasas2 = Label(pajamos1, text="Įsigyta prekė ar paslauga")
+isigyta_preke_paslauga2 = Entry(pajamos1)
+info_uzrasas2 = Label(pajamos1, text="Informacija")
+info2 = Entry(pajamos1)
+islaidos_button2 = Button(pajamos1, text="Įvesti", command=ui_ivesti_islaidas)
+
 pajamos1.pack()
 islaidos2.pack()
 viskas3.pack()
 
+# Pajamų objektų pakavimas:
 uzrasas1.pack()
 suma_uzrasas1.pack()
 suma1.pack()
@@ -36,6 +58,18 @@ siuntejas1.pack()
 info_uzrasas1.pack()
 info1.pack()
 pajamos_button1.pack()
+
+# Išlaidų objektų pakavimas:
+uzrasas2.pack()
+suma_uzrasas2.pack()
+suma2.pack()
+atsiskaitymo_budas_uzrasas2.pack()
+atsiskaitymo_budas2.pack()
+isigyta_preke_paslauga_uzrasas2.pack()
+isigyta_preke_paslauga2.pack()
+info_uzrasas2.pack()
+info2.pack()
+islaidos_button2.pack()
 
 langas.mainloop()
 
